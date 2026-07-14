@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { path: '/dashboard', label: 'Dashboard' },
   { path: '/UpdateDATA', label: 'Update Data' },
   { path: '/AddData', label: 'Add Data' },
+  { path: '/hookdata', label: 'Hook Data' },
 ];
 
 const AppHeader = ({ title }) => {

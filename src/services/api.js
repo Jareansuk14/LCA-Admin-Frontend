@@ -225,6 +225,18 @@ export const healthAPI = {
   }
 };
 
+export const hookDataAPI = {
+  getAll: async () => {
+    const response = await api.get('/hook-data');
+    return response.data;
+  },
+
+  download: async (id) => {
+    const response = await api.get(`/hook-data/${id}/download`, { responseType: 'blob' });
+    return response.data;
+  }
+};
+
 // Phone Data API
 export const phoneDataAPI = {
   // Get team members (for Head/Admin)

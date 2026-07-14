@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import OnlyDev from './pages/OnlyDev';
 import UpdateData from './pages/UpdateData';
 import AddData from './pages/AddData';
+import HookData from './pages/HookData';
 
 function App() {
   return (
@@ -55,6 +56,15 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={['Head', 'Admin']}>
                   <AddData />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/hookdata"
+              element={
+                <ProtectedRoute allowedRoles={['Head', 'Admin']}>
+                  <HookData />
                 </ProtectedRoute>
               }
             />
