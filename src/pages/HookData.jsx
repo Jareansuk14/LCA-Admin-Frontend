@@ -44,27 +44,30 @@ const HookData = () => {
   };
 
   const columns = [
-    { title: 'ลำดับ', dataIndex: 'no', key: 'no', width: 70, align: 'center' },
-    { title: 'User', dataIndex: 'user', key: 'user' },
-    { title: 'ทีม', dataIndex: 'team', key: 'team' },
+    { title: 'ลำดับ', dataIndex: 'no', key: 'no', width: '8%', align: 'center' },
+    { title: 'User', dataIndex: 'user', key: 'user', width: '14%', align: 'center' },
+    { title: 'ทีม', dataIndex: 'team', key: 'team', width: '14%', align: 'center' },
     {
       title: 'วันเวลาที่อัพโหลด',
       dataIndex: 'uploadedAt',
       key: 'uploadedAt',
+      width: '32%',
+      align: 'center',
       render: (v) => dayjs(v).format('DD/MM/YYYY HH:mm:ss')
     },
     {
       title: 'จำนวนเบอร์',
       dataIndex: 'totalCount',
       key: 'totalCount',
-      align: 'right',
+      width: '14%',
+      align: 'center',
       render: (v) => v?.toLocaleString()
     },
     {
       title: 'ดาวน์โหลด',
       key: 'download',
+      width: '18%',
       align: 'center',
-      width: 120,
       render: (_, record) => (
         <Button
           type="primary"
@@ -103,6 +106,7 @@ const HookData = () => {
             columns={columns}
             dataSource={data}
             loading={loading}
+            tableLayout="fixed"
             pagination={{ pageSize: 20, showSizeChanger: true }}
             size="middle"
           />
