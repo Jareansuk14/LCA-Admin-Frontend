@@ -445,7 +445,7 @@ const OnlyDev = () => {
         }}
       >
         <Title level={3} style={{ color: '#ffffff', margin: 0, fontSize: '18px' }}>
-          LineAdmin - Developer Mode
+          LCA-Admin - Developer Mode
         </Title>
         <Dropdown menu={userMenu} trigger={['click']}>
           <Button

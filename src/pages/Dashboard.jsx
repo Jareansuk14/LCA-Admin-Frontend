@@ -415,7 +415,7 @@ const Dashboard = () => {
         }}
       >
         <Title level={3} style={{ color: '#ffffff', margin: 0, fontSize: '22px', fontWeight: 'bold' }}>
-          LineAdmin
+          LCA-Admin
         </Title>
         <Space size="middle" align="center">
           {isAdmin() && (
