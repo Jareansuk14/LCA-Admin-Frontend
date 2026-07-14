@@ -33,7 +33,7 @@ const HookData = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = record.fileName || `${record.user}_${dayjs(record.uploadedAt).format('YYYY-MM-DD')}.txt`;
+      a.download = `วันที่${dayjs(record.uploadedAt).format('DD-MM-YYYY')} เวลา ${dayjs(record.uploadedAt).format('HH.mm.ss')} จำนวน ${record.totalCount} เบอร์.txt`;
       a.click();
       URL.revokeObjectURL(url);
     } catch {
