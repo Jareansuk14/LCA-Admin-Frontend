@@ -1,66 +1,53 @@
 export const darkTheme = {
   token: {
-    // Primary colors
-    colorPrimary: '#ffffff',
-    colorPrimaryHover: '#f0f0f0',
-    colorPrimaryActive: '#d9d9d9',
-    
-    // Background colors
+    colorPrimary: '#FFC000',
+    colorPrimaryHover: '#917300',
+    colorPrimaryActive: '#917300',
+
     colorBgBase: '#000000',
     colorBgContainer: '#000000',
-    colorBgElevated: '#1a1a1a',
+    colorBgElevated: '#202020',
     colorBgLayout: '#000000',
-    colorBgSpotlight: '#262626',
-    colorBgMask: 'rgba(0, 0, 0, 0.45)',
-    
-    // Border colors
-    colorBorder: '#333333',
-    colorBorderSecondary: '#262626',
-    
-    // Text colors
+    colorBgSpotlight: '#202020',
+    colorBgMask: 'rgba(0,0,0,0.7)',
+
+    colorBorder: '#2a2a2a',
+    colorBorderSecondary: '#202020',
+
     colorText: '#ffffff',
     colorTextSecondary: '#bfbfbf',
-    colorTextTertiary: '#8c8c8c',
-    colorTextQuaternary: '#595959',
-    colorTextDescription: '#8c8c8c',
-    colorTextDisabled: '#434343',
+    colorTextTertiary: '#969696',
+    colorTextQuaternary: '#7D7D7D',
+    colorTextDescription: '#7D7D7D',
+    colorTextDisabled: '#494949',
     colorTextHeading: '#ffffff',
     colorTextLabel: '#ffffff',
-    colorTextPlaceholder: '#595959',
-    
-    // Component specific
-    colorFill: '#262626',
-    colorFillSecondary: '#1f1f1f',
-    colorFillTertiary: '#1a1a1a',
-    colorFillQuaternary: '#141414',
-    
-    // Success, Warning, Error colors (keeping them visible)
-    colorSuccess: '#52c41a',
-    colorWarning: '#faad14',
+    colorTextPlaceholder: '#555555',
+
+    colorFill: '#202020',
+    colorFillSecondary: '#181818',
+    colorFillTertiary: '#141414',
+    colorFillQuaternary: '#0d0d0d',
+
+    colorSuccess: '#FFC000',
+    colorWarning: '#FFC000',
     colorError: '#ff4d4f',
-    colorInfo: '#1890ff',
-    
-    // Font
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    colorInfo: '#29ABE2',
+
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
     fontSize: 14,
-    
-    // Border radius
-    borderRadius: 6,
-    borderRadiusLG: 8,
-    borderRadiusSM: 4,
-    
-    // Box shadow (minimal for dark theme)
-    boxShadow: '0 2px 8px rgba(255, 255, 255, 0.05)',
-    boxShadowSecondary: '0 4px 12px rgba(255, 255, 255, 0.05)',
-    
-    // Motion
-    motionDurationFast: '0.1s',
-    motionDurationMid: '0.2s',
-    motionDurationSlow: '0.3s',
+
+    borderRadius: 0,
+    borderRadiusLG: 0,
+    borderRadiusSM: 0,
+
+    wireframe: false,
+
+    controlHeight: 40,
+    controlHeightLG: 44,
   },
-  
+
   components: {
-    // Layout
     Layout: {
       bodyBg: '#000000',
       headerBg: '#000000',
@@ -68,103 +55,136 @@ export const darkTheme = {
       footerBg: '#000000',
       headerHeight: 64,
       headerPadding: '0 24px',
-      siderWidth: 200,
-      triggerBg: '#262626',
-      triggerColor: '#ffffff',
     },
-    
-    // Menu
+
     Menu: {
       itemBg: 'transparent',
       itemColor: '#ffffff',
-      itemHoverBg: '#262626',
+      itemHoverBg: '#202020',
       itemHoverColor: '#ffffff',
-      itemSelectedBg: '#333333',
-      itemSelectedColor: '#ffffff',
-      itemActiveBg: '#1a1a1a',
-      subMenuItemBg: 'transparent',
-      groupTitleColor: '#8c8c8c',
-      iconSize: 16,
-      collapsedIconSize: 16,
+      itemSelectedBg: '#202020',
+      itemSelectedColor: '#FFC000',
+      itemActiveBg: '#181818',
     },
-    
-    // Button
+
     Button: {
       primaryColor: '#000000',
-      primaryBg: '#ffffff',
-      primaryBorderColor: '#ffffff',
+      primaryBg: '#FFC000',
+      primaryBorderColor: '#FFC000',
       defaultColor: '#ffffff',
       defaultBg: 'transparent',
-      defaultBorderColor: '#333333',
+      defaultBorderColor: '#ffffff',
       ghostColor: '#ffffff',
       ghostBg: 'transparent',
-      ghostBorderColor: '#333333',
+      ghostBorderColor: '#ffffff',
       dangerColor: '#ffffff',
       dangerBg: '#ff4d4f',
       dangerBorderColor: '#ff4d4f',
+      borderRadius: 0,
+      fontWeight: 500,
     },
-    
-    // Input
+
     Input: {
-      colorBgContainer: '#1a1a1a',
-      colorBorder: '#333333',
+      colorBgContainer: '#181818',
+      colorBorder: '#2a2a2a',
       colorText: '#ffffff',
-      colorTextPlaceholder: '#595959',
-      activeBorderColor: '#ffffff',
-      hoverBorderColor: '#595959',
-      activeShadow: '0 0 0 2px rgba(255, 255, 255, 0.1)',
+      colorTextPlaceholder: '#555555',
+      activeBorderColor: '#FFC000',
+      hoverBorderColor: '#7D7D7D',
+      activeShadow: '0 0 0 2px rgba(255, 192, 0, 0.15)',
+      borderRadius: 0,
     },
-    
-    // Table
+
     Table: {
-      headerBg: '#1a1a1a',
-      headerColor: '#ffffff',
-      rowHoverBg: '#262626',
-      borderColor: '#333333',
+      headerBg: '#181818',
+      headerColor: '#FFC000',
+      rowHoverBg: '#202020',
+      borderColor: '#202020',
       headerBorderRadius: 0,
+      cellPaddingBlock: 14,
     },
-    
-    // Modal
+
     Modal: {
-      contentBg: '#1a1a1a',
-      headerBg: '#1a1a1a',
+      contentBg: '#202020',
+      headerBg: '#202020',
       titleColor: '#ffffff',
-      footerBg: '#1a1a1a',
+      footerBg: '#202020',
+      borderRadius: 0,
     },
-    
-    // Form
+
     Form: {
       labelColor: '#ffffff',
-      itemMarginBottom: 24,
+      itemMarginBottom: 22,
     },
-    
-    // Select
+
     Select: {
-      colorBgContainer: '#1a1a1a',
-      colorBorder: '#333333',
+      colorBgContainer: '#181818',
+      colorBorder: '#2a2a2a',
       colorText: '#ffffff',
-      optionSelectedBg: '#333333',
-      optionActiveBg: '#262626',
-      selectorBg: '#1a1a1a',
+      optionSelectedBg: '#202020',
+      optionSelectedColor: '#FFC000',
+      optionActiveBg: '#181818',
+      selectorBg: '#181818',
+      borderRadius: 0,
     },
-    
-    // Card
+
     Card: {
-      colorBgContainer: '#111111',
-      colorBorderSecondary: '#333333',
+      colorBgContainer: '#181818',
+      colorBorderSecondary: '#202020',
+      borderRadiusLG: 0,
     },
-    
-    // Notification
+
+    Tag: {
+      borderRadiusSM: 0,
+      defaultBg: '#202020',
+      defaultColor: '#ffffff',
+    },
+
+    Switch: {
+      colorPrimary: '#FFC000',
+      trackHeight: 20,
+      trackMinWidth: 38,
+    },
+
     Notification: {
-      colorBgElevated: '#1a1a1a',
+      colorBgElevated: '#202020',
       colorText: '#ffffff',
       colorTextHeading: '#ffffff',
     },
-    
-    // Message
+
     Message: {
-      colorBgElevated: '#1a1a1a',
+      colorBgElevated: '#202020',
       colorText: '#ffffff',
     },
-  }
+
+    DatePicker: {
+      colorBgContainer: '#181818',
+      colorBorder: '#2a2a2a',
+      colorText: '#ffffff',
+      borderRadius: 0,
+      activeBorderColor: '#FFC000',
+      hoverBorderColor: '#7D7D7D',
+    },
+
+    Pagination: {
+      itemBg: '#181818',
+      itemActiveBg: '#FFC000',
+      itemInputBg: '#181818',
+    },
+
+    Statistic: {
+      colorText: '#ffffff',
+      contentFontSize: 28,
+    },
+
+    Upload: {
+      colorBorder: '#2a2a2a',
+      colorBgElevated: '#181818',
+    },
+
+    Popconfirm: {
+      colorBgElevated: '#202020',
+      colorText: '#ffffff',
+    },
+  },
 };

@@ -80,12 +80,18 @@ const HookData = () => {
   ];
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#0a0a0a' }}>
+    <Layout style={{ minHeight: '100vh', background: 'var(--lambo-black)' }}>
       <AppHeader title="Hook Data" />
-      <Content style={{ padding: 24 }}>
+      <Content style={{ padding: 24, background: 'var(--lambo-black)' }}>
         <Card
-          style={{ background: '#141414', border: '1px solid #333' }}
-          title={<span style={{ color: '#fff' }}>ข้อมูลเบอร์จาก Local DATA</span>}
+          className="lambo-panel"
+          style={{ background: 'var(--lambo-iron)', border: '1px solid var(--lambo-border)' }}
+          title={
+            <div>
+              <div className="lambo-section-title" style={{ fontSize: '20px' }}>ข้อมูลเบอร์จาก Local DATA</div>
+              <span className="lambo-gold-bar" style={{ marginTop: 6 }} />
+            </div>
+          }
           extra={
             <Button icon={<ReloadOutlined />} onClick={loadData} loading={loading}>
               รีเฟรช

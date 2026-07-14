@@ -6,7 +6,6 @@ import {
   Card,
   DatePicker,
   Space,
-  Statistic,
   Row,
   Col,
   Button,
@@ -1001,7 +1000,7 @@ const UpdateData = () => {
       align: 'center',
       render: (count) => (
         <div style={{ textAlign: 'center' }}>
-          <Text style={{ fontSize: isMobile ? '12px' : '14px', fontWeight: 'bold', color: count > 0 ? '#52c41a' : '#888' }}>
+          <Text style={{ fontSize: isMobile ? '12px' : '14px', fontWeight: 'bold', color: count > 0 ? 'var(--lambo-gold)' : '#888' }}>
             {count || 0}
           </Text>
         </div>
@@ -1015,7 +1014,7 @@ const UpdateData = () => {
       align: 'center',
       render: (count) => (
         <div style={{ textAlign: 'center' }}>
-          <Text style={{ fontSize: isMobile ? '12px' : '14px', fontWeight: 'bold', color: count > 0 ? '#1890ff' : '#888' }}>
+          <Text style={{ fontSize: isMobile ? '12px' : '14px', fontWeight: 'bold', color: count > 0 ? 'var(--lambo-cyan)' : '#888' }}>
             {count || 0}
           </Text>
         </div>
@@ -1029,7 +1028,7 @@ const UpdateData = () => {
       align: 'center',
       render: (count) => (
         <div style={{ textAlign: 'center' }}>
-          <Text style={{ fontSize: isMobile ? '12px' : '14px', fontWeight: 'bold', color: count > 0 ? '#ff4d4f' : '#888' }}>
+          <Text style={{ fontSize: isMobile ? '12px' : '14px', fontWeight: 'bold', color: count > 0 ? 'var(--lambo-white)' : '#888' }}>
             {count || 0}
           </Text>
         </div>
@@ -1043,7 +1042,7 @@ const UpdateData = () => {
       align: 'center',
       render: (count) => (
         <div style={{ textAlign: 'center' }}>
-          <Text style={{ fontSize: isMobile ? '12px' : '14px', fontWeight: 'bold', color: count > 0 ? '#722ed1' : '#888' }}>
+          <Text style={{ fontSize: isMobile ? '12px' : '14px', fontWeight: 'bold', color: count > 0 ? 'var(--lambo-gold-light)' : '#888' }}>
             {count || 0}
           </Text>
         </div>
@@ -1066,63 +1065,56 @@ const UpdateData = () => {
   ];
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#000000' }}>
+    <Layout style={{ minHeight: '100vh', background: 'var(--lambo-black)' }}>
       <AppHeader title="Update Data" />
 
-      <Content style={{ padding: '16px', background: '#000000' }}>
+      <Content style={{ padding: '16px', background: 'var(--lambo-black)' }}>
         <div className="responsive-container">
           <Row gutter={[16, 16]} style={{ marginBottom: 16 }}>
             <Col xs={12} sm={12} md={6}>
-              <Card style={{ background: '#1a1a1a', border: '1px solid #333333' }}>
-                <Statistic
-                  title={<Text style={{ color: '#ffffff' }}>เพิ่มบัญชีทั้งหมด</Text>}
-                  value={summary.totalRegistrations}
-                  valueStyle={{ color: '#52c41a', fontSize: isMobile ? '20px' : '28px' }}
-                  suffix="บัญชี"
-                />
-              </Card>
+              <div className="lambo-stat-panel">
+                <Text style={{ color: 'var(--lambo-ash)', textTransform: 'uppercase', letterSpacing: '0.06em', fontSize: 12 }}>เพิ่มบัญชีทั้งหมด</Text>
+                <div style={{ color: 'var(--lambo-gold)', fontSize: isMobile ? '20px' : '28px', fontWeight: 600, marginTop: 6 }}>
+                  {summary.totalRegistrations} <span style={{ fontSize: 13, color: 'var(--lambo-ash)' }}>บัญชี</span>
+                </div>
+              </div>
             </Col>
             <Col xs={12} sm={12} md={6}>
-              <Card style={{ background: '#1a1a1a', border: '1px solid #333333' }}>
-                <Statistic
-                  title={<Text style={{ color: '#ffffff' }}>เพิ่มเพื่อนทั้งหมด</Text>}
-                  value={summary.totalFriends}
-                  valueStyle={{ color: '#1890ff', fontSize: isMobile ? '20px' : '28px' }}
-                  suffix="คน"
-                />
-              </Card>
+              <div className="lambo-stat-panel">
+                <Text style={{ color: 'var(--lambo-ash)', textTransform: 'uppercase', letterSpacing: '0.06em', fontSize: 12 }}>เพิ่มเพื่อนทั้งหมด</Text>
+                <div style={{ color: 'var(--lambo-cyan)', fontSize: isMobile ? '20px' : '28px', fontWeight: 600, marginTop: 6 }}>
+                  {summary.totalFriends} <span style={{ fontSize: 13, color: 'var(--lambo-ash)' }}>คน</span>
+                </div>
+              </div>
             </Col>
             <Col xs={12} sm={12} md={6}>
-              <Card style={{ background: '#1a1a1a', border: '1px solid #333333' }}>
-                <Statistic
-                  title={<Text style={{ color: '#ffffff' }}>สร้างกลุ่มทั้งหมด</Text>}
-                  value={summary.totalGroups}
-                  valueStyle={{ color: '#ff4d4f', fontSize: isMobile ? '20px' : '28px' }}
-                  suffix="กลุ่ม"
-                />
-              </Card>
+              <div className="lambo-stat-panel">
+                <Text style={{ color: 'var(--lambo-ash)', textTransform: 'uppercase', letterSpacing: '0.06em', fontSize: 12 }}>สร้างกลุ่มทั้งหมด</Text>
+                <div style={{ color: 'var(--lambo-white)', fontSize: isMobile ? '20px' : '28px', fontWeight: 600, marginTop: 6 }}>
+                  {summary.totalGroups} <span style={{ fontSize: 13, color: 'var(--lambo-ash)' }}>กลุ่ม</span>
+                </div>
+              </div>
             </Col>
             <Col xs={12} sm={12} md={6}>
-              <Card style={{ background: '#1a1a1a', border: '1px solid #333333' }}>
-                <Statistic
-                  title={<Text style={{ color: '#ffffff' }}>ส่งข้อความทั้งหมด</Text>}
-                  value={summary.totalMessages}
-                  valueStyle={{ color: '#722ed1', fontSize: isMobile ? '20px' : '28px' }}
-                  suffix="ครั้ง"
-                />
-              </Card>
+              <div className="lambo-stat-panel">
+                <Text style={{ color: 'var(--lambo-ash)', textTransform: 'uppercase', letterSpacing: '0.06em', fontSize: 12 }}>ส่งข้อความทั้งหมด</Text>
+                <div style={{ color: 'var(--lambo-gold-light)', fontSize: isMobile ? '20px' : '28px', fontWeight: 600, marginTop: 6 }}>
+                  {summary.totalMessages} <span style={{ fontSize: 13, color: 'var(--lambo-ash)' }}>ครั้ง</span>
+                </div>
+              </div>
             </Col>
           </Row>
 
           <Card
+            className="lambo-panel"
             style={{
-              background: '#000000',
-              border: '1px solid #333333',
+              background: 'var(--lambo-iron)',
+              border: '1px solid var(--lambo-border)',
               marginBottom: 16
             }}
           >
-            <Space 
-              direction={isMobile ? 'vertical' : 'horizontal'} 
+            <Space
+              direction={isMobile ? 'vertical' : 'horizontal'}
               style={{ width: '100%', justifyContent: 'space-between' }}
               wrap
             >
@@ -1158,6 +1150,7 @@ const UpdateData = () => {
                 </Button>
               </Space>
               <Button
+                type="primary"
                 icon={<DownloadOutlined />}
                 onClick={handleGenerateImage}
                 disabled={stats.length === 0}
@@ -1169,9 +1162,10 @@ const UpdateData = () => {
           </Card>
 
           <Card
+            className="lambo-panel"
             style={{
-              background: '#000000',
-              border: '1px solid #333333'
+              background: 'var(--lambo-iron)',
+              border: '1px solid var(--lambo-border)'
             }}
           >
             <div style={{ overflowX: 'auto' }}>
@@ -1189,7 +1183,7 @@ const UpdateData = () => {
                   size: isMobile ? 'small' : 'default'
                 }}
                 style={{
-                  background: '#000000',
+                  background: 'var(--lambo-black)',
                   minWidth: isMobile ? '700px' : '800px'
                 }}
                 size={isMobile ? 'small' : 'default'}

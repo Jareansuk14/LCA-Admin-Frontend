@@ -1,11 +1,10 @@
 import React from 'react';
-import { Layout, Button, Typography, Space, Dropdown, message } from 'antd';
+import { Layout, Button, Dropdown, message } from 'antd';
 import { LogoutOutlined, UserOutlined, MoreOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const { Header } = Layout;
-const { Title } = Typography;
 
 const NAV_ITEMS = [
   { path: '/dashboard', label: 'Dashboard' },
@@ -32,9 +31,7 @@ const AppHeader = ({ title }) => {
         label: `${user?.user} (${user?.role})`,
         disabled: true,
       },
-      {
-        type: 'divider',
-      },
+      { type: 'divider' },
       {
         key: 'logout',
         icon: <LogoutOutlined />,
@@ -47,52 +44,68 @@ const AppHeader = ({ title }) => {
   return (
     <Header
       style={{
-        background: '#000000',
-        borderBottom: '1px solid #333333',
-        padding: '0 16px',
+        background: 'var(--lambo-black)',
+        borderBottom: '1px solid var(--lambo-border)',
+        padding: '0 28px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: '56px',
-        lineHeight: '56px',
+        height: '64px',
+        lineHeight: '64px',
       }}
     >
-      <Title level={3} style={{ color: '#ffffff', margin: 0, fontSize: '22px', fontWeight: 'bold' }}>
-        {title}
-      </Title>
-      <Space size="middle" align="center">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        <span className="lambo-brand" style={{ fontSize: '22px' }}>LCA</span>
+        <span style={{ width: 28, height: 2, background: 'var(--lambo-gold)', display: 'inline-block' }} />
+        {title && (
+          <span
+            className="lambo-brand"
+            style={{ fontSize: '13px', color: 'var(--lambo-ash)', letterSpacing: '0.12em' }}
+          >
+            {title}
+          </span>
+        )}
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
         {isAdmin() && (
-          <Space size="middle">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
             {NAV_ITEMS.map((item) => {
               const isActive = location.pathname === item.path;
               return (
-                <Button
+                <button
                   key={item.path}
-                  type="text"
                   onClick={() => navigate(item.path)}
                   style={{
-                    color: isActive ? '#ffffff' : '#00C300',
-                    fontWeight: isActive ? '600' : '500',
-                    fontSize: '14px',
-                    borderBottom: isActive ? '2px solid #00C300' : 'none',
-                    borderRadius: 0,
+                    background: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: isActive ? 'var(--lambo-gold)' : 'var(--lambo-white)',
+                    fontFamily: 'var(--font-display)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    fontSize: '13px',
+                    fontWeight: 500,
+                    padding: '0 0 2px',
+                    borderBottom: isActive ? '2px solid var(--lambo-gold)' : '2px solid transparent',
+                    lineHeight: '40px',
                   }}
                 >
                   {item.label}
-                </Button>
+                </button>
               );
             })}
-          </Space>
+          </div>
         )}
         <Dropdown menu={userMenu} trigger={['click']}>
           <Button
             type="text"
             icon={<MoreOutlined />}
-            style={{ color: '#ffffff' }}
+            style={{ color: 'var(--lambo-white)' }}
             size="small"
           />
         </Dropdown>
-      </Space>
+      </div>
     </Header>
   );
 };

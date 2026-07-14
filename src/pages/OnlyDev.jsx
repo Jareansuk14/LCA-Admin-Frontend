@@ -402,22 +402,24 @@ const OnlyDev = () => {
   ];
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#000000' }}>
+    <Layout style={{ minHeight: '100vh', background: 'var(--lambo-black)' }}>
       <AppHeader title="LCA-Admin - Developer Mode" />
 
-      <Content style={{ padding: '16px', background: '#000000', maxWidth: '100%' }}>
+      <Content style={{ padding: '16px', background: 'var(--lambo-black)', maxWidth: '100%' }}>
         <div className="responsive-container" style={{ maxWidth: '100%' }}>
           <Card
+            className="lambo-panel"
             style={{
-              background: '#000000',
-              border: '1px solid #333333',
+              background: 'var(--lambo-iron)',
+              border: '1px solid var(--lambo-border)',
               maxWidth: '100%'
             }}
           >
             <div className="responsive-flex" style={{ marginBottom: 16 }}>
-              <Title level={4} style={{ color: '#ffffff', margin: 0, fontSize: '16px' }}>
-                จัดการผู้ใช้ (Developer View)
-              </Title>
+              <div>
+                <div className="lambo-section-title" style={{ fontSize: '20px' }}>จัดการผู้ใช้ (Developer View)</div>
+                <span className="lambo-gold-bar" style={{ marginTop: 6 }} />
+              </div>
               <Space wrap>
                 <Select
                   value={selectedTeam}
@@ -433,7 +435,7 @@ const OnlyDev = () => {
                     </Select.Option>
                   ))}
                 </Select>
-                <Space style={{ color: '#ffffff', fontSize: isMobile ? '12px' : '14px' }}>
+                <Space style={{ color: 'var(--lambo-white)', fontSize: isMobile ? '12px' : '14px' }}>
                   <span>ออนไลน์เท่านั้น:</span>
                   <Switch
                     checked={showOnlineOnly}
@@ -459,7 +461,7 @@ const OnlyDev = () => {
                   size: isMobile ? 'small' : 'default'
                 }}
                 style={{
-                  background: '#000000',
+                  background: 'var(--lambo-black)',
                   minWidth: isMobile ? '700px' : '900px'
                 }}
                 size={isMobile ? 'small' : 'default'}

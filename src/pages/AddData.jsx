@@ -344,11 +344,7 @@ const AddData = () => {
               icon={<PlusOutlined />}
               size="small"
               onClick={() => handleAddDataClick(record)}
-              style={{ 
-                backgroundColor: '#52c41a', 
-                borderColor: '#52c41a',
-                fontSize: isMobile ? '10px' : '12px'
-              }}
+              style={{ fontSize: isMobile ? '10px' : '12px' }}
             />
           )}
           <Button
@@ -356,7 +352,7 @@ const AddData = () => {
             icon={<HistoryOutlined />}
             size="small"
             onClick={() => handleHistoryClick(record)}
-            style={{ color: '#1890ff' }}
+            style={{ color: 'var(--lambo-cyan)' }}
           />
         </Space>
       ),
@@ -364,31 +360,28 @@ const AddData = () => {
   ];
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#000000' }}>
+    <Layout style={{ minHeight: '100vh', background: 'var(--lambo-black)' }}>
       <AppHeader title="Add Data" />
 
-      <Content style={{ padding: '16px', background: '#000000' }}>
+      <Content style={{ padding: '16px', background: 'var(--lambo-black)' }}>
         <Card
-          style={{
-            background: '#000000',
-            border: '1px solid #333333'
-          }}
+          className="lambo-panel"
+          style={{ background: 'var(--lambo-iron)', border: '1px solid var(--lambo-border)' }}
         >
           <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
-            <Title level={4} style={{ color: '#ffffff', margin: 0, fontSize: '16px' }}>
-              รายชื่อสมาชิก
-            </Title>
+            <div>
+              <div className="lambo-section-title" style={{ fontSize: '20px' }}>รายชื่อสมาชิก</div>
+              <span className="lambo-gold-bar" style={{ marginTop: 6 }} />
+            </div>
             <Space>
               {canUpload && (
                 <Button
                   type="primary"
                   icon={<PlusOutlined />}
                   onClick={handleUploadAllClick}
-                  style={{ 
-                    backgroundColor: '#1890ff', 
-                    borderColor: '#1890ff',
+                  style={{
                     fontSize: isMobile ? '12px' : '14px',
-                    fontWeight: 'bold'
+                    fontWeight: 600
                   }}
                 >
                   อัพ DATA ให้ทุกคน
@@ -426,7 +419,7 @@ const AddData = () => {
                 size: isMobile ? 'small' : 'default'
               }}
               style={{
-                background: '#000000',
+                background: 'var(--lambo-black)',
                 minWidth: isMobile ? '500px' : '700px'
               }}
               size={isMobile ? 'small' : 'default'}
@@ -453,7 +446,7 @@ const AddData = () => {
               loading={uploading}
               disabled={!validatedData || validatedData.validCount === 0 || (extraPhone && !isValidExtraPhone(extraPhone))}
               onClick={handleUpload}
-              style={{ backgroundColor: '#52c41a', borderColor: '#52c41a', minWidth: 80, height: 36 }}
+              style={{ minWidth: 80, height: 36 }}
             >
               อัพโหลด
             </Button>
@@ -478,7 +471,7 @@ const AddData = () => {
           style={{ marginBottom: 16 }}
         >
           <p className="ant-upload-drag-icon">
-            <InboxOutlined style={{ color: '#52c41a', fontSize: 48 }} />
+            <InboxOutlined style={{ color: 'var(--lambo-gold)', fontSize: 48 }} />
           </p>
           <p className="ant-upload-text">คลิกหรือลากไฟล์ .txt มาวางที่นี่</p>
           <p className="ant-upload-hint">
@@ -487,7 +480,7 @@ const AddData = () => {
         </Dragger>
 
         {fileName && (
-          <Card size="small" style={{ marginBottom: 16, background: '#f0f0f0' }}>
+          <Card size="small" style={{ marginBottom: 16, background: 'var(--lambo-charcoal)', borderColor: 'var(--lambo-border)' }}>
             <Text>ชื่อไฟล์: <Text strong>{fileName} จาก {user?.user}</Text></Text>
           </Card>
         )}
@@ -496,7 +489,7 @@ const AddData = () => {
           <Card size="small">
             <Space direction="vertical" style={{ width: '100%' }}>
               <Text>จำนวนเบอร์ทั้งหมด: <Text strong>{validatedData.originalCount}</Text></Text>
-              <Text>เบอร์ที่ถูกต้อง: <Text strong style={{ color: '#52c41a' }}>{validatedData.validCount}</Text></Text>
+              <Text>เบอร์ที่ถูกต้อง: <Text strong style={{ color: 'var(--lambo-gold)' }}>{validatedData.validCount}</Text></Text>
               <Text>เบอร์ที่ไม่ถูกต้อง/ซ้ำ: <Text strong style={{ color: '#ff4d4f' }}>{validatedData.invalidCount}</Text></Text>
               {extraPhone && isValidExtraPhone(extraPhone) && (
                 <Text>เบอร์ออดิท: <Text strong>{extraPhone}</Text></Text>
@@ -589,7 +582,7 @@ const AddData = () => {
               loading={uploading}
               disabled={!validatedData || validatedData.validCount === 0 || (extraPhone && !isValidExtraPhone(extraPhone))}
               onClick={handleUploadAll}
-              style={{ backgroundColor: '#52c41a', borderColor: '#52c41a', minWidth: 180, height: 36 }}
+              style={{ minWidth: 180, height: 36 }}
             >
               {uploading ? 'กำลังอัพโหลด...' : `อัพโหลดให้ทุกคน (${allMembers.length} คน)`}
             </Button>
@@ -614,7 +607,7 @@ const AddData = () => {
           style={{ marginBottom: 16 }}
         >
           <p className="ant-upload-drag-icon">
-            <InboxOutlined style={{ color: '#52c41a', fontSize: 48 }} />
+            <InboxOutlined style={{ color: 'var(--lambo-gold)', fontSize: 48 }} />
           </p>
           <p className="ant-upload-text">คลิกหรือลากไฟล์ .txt มาวางที่นี่</p>
           <p className="ant-upload-hint">
@@ -623,7 +616,7 @@ const AddData = () => {
         </Dragger>
 
         {fileName && (
-          <Card size="small" style={{ marginBottom: 16, background: '#f0f0f0' }}>
+          <Card size="small" style={{ marginBottom: 16, background: 'var(--lambo-charcoal)', borderColor: 'var(--lambo-border)' }}>
             <Text>ชื่อไฟล์: <Text strong>{fileName} จาก {user?.user}</Text></Text>
           </Card>
         )}
@@ -632,7 +625,7 @@ const AddData = () => {
           <Card size="small">
             <Space direction="vertical" style={{ width: '100%' }}>
               <Text>จำนวนเบอร์ทั้งหมด: <Text strong>{validatedData.originalCount}</Text></Text>
-              <Text>เบอร์ที่ถูกต้อง: <Text strong style={{ color: '#52c41a' }}>{validatedData.validCount}</Text></Text>
+              <Text>เบอร์ที่ถูกต้อง: <Text strong style={{ color: 'var(--lambo-gold)' }}>{validatedData.validCount}</Text></Text>
               <Text>เบอร์ที่ไม่ถูกต้อง/ซ้ำ: <Text strong style={{ color: '#ff4d4f' }}>{validatedData.invalidCount}</Text></Text>
               {extraPhone && isValidExtraPhone(extraPhone) && (
                 <Text>เบอร์ออดิท: <Text strong>{extraPhone}</Text></Text>

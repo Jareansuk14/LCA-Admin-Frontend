@@ -370,32 +370,26 @@ const Dashboard = () => {
   ];
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#000000' }}>
+    <Layout style={{ minHeight: '100vh', background: 'var(--lambo-black)' }}>
       <AppHeader title="LCA-Admin" />
 
-      <Content style={{ padding: '16px', background: '#000000' }}>
+      <Content style={{ padding: '16px', background: 'var(--lambo-black)' }}>
         <div className="responsive-container">
           <Card
-            style={{
-              background: '#000000',
-              border: '1px solid #333333'
-            }}
+            className="lambo-panel"
+            style={{ background: 'var(--lambo-iron)', border: '1px solid var(--lambo-border)' }}
           >
             <div className="responsive-flex" style={{ marginBottom: 16 }}>
-              <Title level={4} style={{ color: '#ffffff', margin: 0, fontSize: '16px' }}>
-                จัดการผู้ใช้
-              </Title>
+              <div>
+                <div className="lambo-section-title" style={{ fontSize: '20px' }}>จัดการผู้ใช้</div>
+                <span className="lambo-gold-bar" style={{ marginTop: 6 }} />
+              </div>
               <Button
                 type="primary"
                 icon={<PlusOutlined />}
                 onClick={handleAddUser}
                 size="small"
-                style={{
-                  backgroundColor: '#ffffff',
-                  borderColor: '#ffffff',
-                  color: '#000000',
-                  whiteSpace: 'nowrap'
-                }}
+                style={{ whiteSpace: 'nowrap' }}
               >
                 เพิ่มบัญชี
               </Button>
@@ -416,7 +410,7 @@ const Dashboard = () => {
                   size: isMobile ? 'small' : 'default'
                 }}
                 style={{
-                  background: '#000000',
+                  background: 'var(--lambo-black)',
                   minWidth: isMobile ? '500px' : '600px'
                 }}
                 size={isMobile ? 'small' : 'default'}

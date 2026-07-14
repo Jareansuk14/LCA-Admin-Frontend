@@ -243,7 +243,7 @@ const UserModal = ({
             dropdownRender={(menu) => (
               <>
                 {menu}
-                <div style={{ padding: '8px', borderTop: '1px solid #333333' }}>
+                <div style={{ padding: '8px', borderTop: '1px solid var(--lambo-border)' }}>
                   {showNewTeamInput ? (
                     <Space.Compact style={{ width: '100%' }}>
                       <Input
@@ -277,7 +277,7 @@ const UserModal = ({
                       type="text"
                       icon={<PlusOutlined />}
                       onClick={() => setShowNewTeamInput(true)}
-                      style={{ width: '100%', color: '#ffffff' }}
+                      style={{ width: '100%', color: 'var(--lambo-gold)' }}
                     >
                       สร้างทีมใหม่
                     </Button>
@@ -296,10 +296,10 @@ const UserModal = ({
       </Form>
 
       {/* Custom Footer Buttons */}
-      <div style={{ 
-        marginTop: 24, 
-        paddingTop: 16, 
-        borderTop: '1px solid #333333',
+      <div style={{
+        marginTop: 24,
+        paddingTop: 16,
+        borderTop: '1px solid var(--lambo-border)',
         display: 'flex',
         justifyContent: 'flex-end',
         gap: '12px'
@@ -309,10 +309,9 @@ const UserModal = ({
           style={{
             height: '40px',
             minWidth: '80px',
-            borderRadius: '6px',
-            border: '1px solid #333333',
+            border: '1px solid var(--lambo-border)',
             backgroundColor: 'transparent',
-            color: '#ffffff',
+            color: 'var(--lambo-white)',
             fontWeight: '500',
             fontSize: '14px'
           }}
@@ -324,13 +323,9 @@ const UserModal = ({
           loading={loading}
           onClick={handleSubmit}
           style={{
-            height: '38px',
+            height: '40px',
             minWidth: '80px',
-            borderRadius: '6px',
-            border: 'none',
-            backgroundColor: '#ffffff',
-            color: '#000000',
-            fontWeight: '500',
+            fontWeight: '600',
             fontSize: '14px'
           }}
         >
