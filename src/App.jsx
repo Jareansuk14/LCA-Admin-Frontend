@@ -39,21 +39,21 @@ function App() {
               }
             />
             
-            {/* Audit only */}
+            {/* Admin only (Admin bypasses role check on all routes) */}
             <Route
               path="/UpdateDATA"
               element={
-                <ProtectedRoute allowedRoles={['Audit']}>
+                <ProtectedRoute allowedRoles={['Admin']}>
                   <UpdateData />
                 </ProtectedRoute>
               }
             />
             
-            {/* Head + Audit */}
+            {/* Head + Admin */}
             <Route
               path="/AddData"
               element={
-                <ProtectedRoute allowedRoles={['Head', 'Audit']}>
+                <ProtectedRoute allowedRoles={['Head', 'Admin']}>
                   <AddData />
                 </ProtectedRoute>
               }

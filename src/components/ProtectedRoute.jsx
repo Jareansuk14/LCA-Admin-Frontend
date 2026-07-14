@@ -9,8 +9,6 @@ const getRedirectPath = (role) => {
   switch (role) {
     case 'Admin':
       return '/dashboard';
-    case 'Audit':
-      return '/UpdateDATA';
     case 'Head':
       return '/AddData';
     default:
@@ -70,8 +68,9 @@ const ProtectedRoute = ({
     );
   }
 
-  // Check allowedRoles
-  if (allowedRoles && !allowedRoles.includes(user?.role)) {
+  // Admin can access all pages
+  // Check allowedRoles for non-Admin users
+  if (allowedRoles && user?.role !== 'Admin' && !allowedRoles.includes(user?.role)) {
     if (!shouldRedirect) {
       setShouldRedirect(true);
     }

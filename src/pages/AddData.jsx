@@ -7,7 +7,6 @@ import {
   Space,
   Tag,
   Card,
-  Dropdown,
   Modal,
   Upload,
   message,
@@ -18,13 +17,10 @@ import {
 } from 'antd';
 import {
   PlusOutlined,
-  LogoutOutlined,
-  UserOutlined,
-  MoreOutlined,
   HistoryOutlined,
   InboxOutlined
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
+import AppHeader from '../components/AppHeader';
 import { useAuth } from '../contexts/AuthContext';
 import { phoneDataAPI, teamsAPI } from '../services/api';
 import dayjs from 'dayjs';
@@ -44,7 +40,7 @@ const useResponsive = () => {
   return { isMobile };
 };
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 const { Title, Text } = Typography;
 const { Dragger } = Upload;
 const LAST_EXTRA_PHONE_KEY = 'addDataLastExtraPhone';
@@ -69,12 +65,10 @@ const AddData = () => {
   const [selectedTeam, setSelectedTeam] = useState('all');
   const [fileName, setFileName] = useState('');
   const [extraPhone, setExtraPhone] = useState('');
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { isMobile } = useResponsive();
-  const navigate = useNavigate();
   
-  const isAudit = user?.role === 'Audit';
-  const canFilterTeam = ['Head', 'Admin', 'Audit'].includes(user?.role);
+  const canFilterTeam = ['Head', 'Admin'].includes(user?.role);
 
   useEffect(() => {
     if (canFilterTeam) {
@@ -272,33 +266,8 @@ const AddData = () => {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    message.success('ออกจากระบบสำเร็จ');
-  };
-
   const handleTeamChange = (value) => {
     setSelectedTeam(value);
-  };
-
-  const userMenu = {
-    items: [
-      {
-        key: 'profile',
-        icon: <UserOutlined />,
-        label: `${user?.user} (${user?.role})`,
-        disabled: true
-      },
-      {
-        type: 'divider'
-      },
-      {
-        key: 'logout',
-        icon: <LogoutOutlined />,
-        label: 'ออกจากระบบ',
-        onClick: handleLogout
-      }
-    ]
   };
 
   const columns = [
@@ -355,7 +324,7 @@ const AddData = () => {
       align: 'center',
       render: (role) => (
         <Tag 
-          color={role === 'Admin' ? 'red' : role === 'Audit' ? 'purple' : role === 'Head' ? 'orange' : 'blue'}
+          color={role === 'Admin' ? 'red' : role === 'Head' ? 'orange' : 'blue'}
           style={{ fontSize: isMobile ? '10px' : '12px' }}
         >
           {role}
@@ -396,58 +365,7 @@ const AddData = () => {
 
   return (
     <Layout style={{ minHeight: '100vh', background: '#000000' }}>
-      <Header
-        style={{
-          background: '#000000',
-          borderBottom: '1px solid #333333',
-          padding: '0 16px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '56px',
-          lineHeight: '56px'
-        }}
-      >
-        <Title level={3} style={{ color: '#ffffff', margin: 0, fontSize: '22px', fontWeight: 'bold' }}>
-          Dashboard
-        </Title>
-        <Space size="middle" align="center">
-          {isAudit && (
-            <Space size="middle">
-              <Button
-                type="text"
-                onClick={() => navigate('/UpdateDATA')}
-                style={{
-                  color: '#00C300',
-                  fontWeight: '500',
-                  fontSize: '14px'
-                }}
-              >
-                Update Data
-              </Button>
-              <Button
-                type="text"
-                onClick={() => navigate('/AddData')}
-                style={{
-                  color: '#00C300',
-                  fontWeight: '500',
-                  fontSize: '14px'
-                }}
-              >
-                Add Data
-              </Button>
-            </Space>
-          )}
-          <Dropdown menu={userMenu} trigger={['click']}>
-            <Button
-              type="text"
-              icon={<MoreOutlined />}
-              style={{ color: '#ffffff' }}
-              size="small"
-            />
-          </Dropdown>
-        </Space>
-      </Header>
+      <AppHeader title="Add Data" />
 
       <Content style={{ padding: '16px', background: '#000000' }}>
         <Card

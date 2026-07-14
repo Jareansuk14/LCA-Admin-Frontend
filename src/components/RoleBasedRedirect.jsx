@@ -12,8 +12,6 @@ const RoleBasedRedirect = () => {
   switch (user.role) {
     case 'Admin':
       return <Navigate to="/dashboard" replace />;
-    case 'Audit':
-      return <Navigate to="/UpdateDATA" replace />;
     case 'Head':
       return <Navigate to="/AddData" replace />;
     case 'User':

@@ -9,7 +9,6 @@ import {
   message,
   Tag,
   Card,
-  Dropdown,
   Select,
   Switch
 } from 'antd';
@@ -17,11 +16,9 @@ import {
   PlusOutlined,
   EditOutlined,
   DeleteOutlined,
-  LogoutOutlined,
-  UserOutlined,
-  MoreOutlined,
   PoweroffOutlined
 } from '@ant-design/icons';
+import AppHeader from '../components/AppHeader';
 import { useAuth } from '../contexts/AuthContext';
 import { usersAPI, teamsAPI } from '../services/api';
 import UserModal from '../components/UserModal';
@@ -46,7 +43,7 @@ const useResponsive = () => {
   return { isMobile, isTablet };
 };
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const OnlyDev = () => {
@@ -59,7 +56,7 @@ const OnlyDev = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMode, setModalMode] = useState('create');
   const [editingUser, setEditingUser] = useState(null);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { isMobile, isTablet } = useResponsive();
   const { statuses } = useOnlineStatus();
 
@@ -203,32 +200,6 @@ const OnlyDev = () => {
     loadUsers();
   };
 
-  const handleLogout = () => {
-    logout();
-    message.success('ออกจากระบบสำเร็จ');
-  };
-
-  // User menu for header
-  const userMenu = {
-    items: [
-      {
-        key: 'profile',
-        icon: <UserOutlined />,
-        label: `${user?.user} (${user?.role})`,
-        disabled: true
-      },
-      {
-        type: 'divider'
-      },
-      {
-        key: 'logout',
-        icon: <LogoutOutlined />,
-        label: 'ออกจากระบบ',
-        onClick: handleLogout
-      }
-    ]
-  };
-
   // Table columns with responsive adjustments and additional columns for last login
   const columns = [
     {
@@ -299,7 +270,7 @@ const OnlyDev = () => {
       align: 'center',
       render: (role) => (
         <Tag 
-          color={role === 'Admin' ? 'red' : role === 'Audit' ? 'purple' : role === 'Head' ? 'orange' : 'blue'}
+          color={role === 'Admin' ? 'red' : role === 'Head' ? 'orange' : 'blue'}
           style={{ fontSize: isMobile ? '10px' : '12px' }}
         >
           {role}
@@ -432,30 +403,7 @@ const OnlyDev = () => {
 
   return (
     <Layout style={{ minHeight: '100vh', background: '#000000' }}>
-      <Header
-        style={{
-          background: '#000000',
-          borderBottom: '1px solid #333333',
-          padding: '0 16px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '56px',
-          lineHeight: '56px'
-        }}
-      >
-        <Title level={3} style={{ color: '#ffffff', margin: 0, fontSize: '18px' }}>
-          LCA-Admin - Developer Mode
-        </Title>
-        <Dropdown menu={userMenu} trigger={['click']}>
-          <Button
-            type="text"
-            icon={<MoreOutlined />}
-            style={{ color: '#ffffff' }}
-            size="small"
-          />
-        </Dropdown>
-      </Header>
+      <AppHeader title="LCA-Admin - Developer Mode" />
 
       <Content style={{ padding: '16px', background: '#000000', maxWidth: '100%' }}>
         <div className="responsive-container" style={{ maxWidth: '100%' }}>

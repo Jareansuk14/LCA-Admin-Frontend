@@ -227,7 +227,7 @@ export const healthAPI = {
 
 // Phone Data API
 export const phoneDataAPI = {
-  // Get team members (for Head/Admin/Audit)
+  // Get team members (for Head/Admin)
   getTeamMembers: async (teamId = null) => {
     const params = teamId ? { teamId } : {};
     const response = await api.get('/phone-data/team-members', { params });

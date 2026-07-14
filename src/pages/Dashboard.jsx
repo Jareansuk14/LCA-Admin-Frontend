@@ -9,23 +9,19 @@ import {
   message,
   Tag,
   Card,
-  Dropdown,
   Switch
 } from 'antd';
 import {
   PlusOutlined,
   EditOutlined,
   DeleteOutlined,
-  LogoutOutlined,
-  UserOutlined,
-  MoreOutlined,
   CheckCircleOutlined
 } from '@ant-design/icons';
 import { useAuth } from '../contexts/AuthContext';
 import { usersAPI } from '../services/api';
 import UserModal from '../components/UserModal';
+import AppHeader from '../components/AppHeader';
 import dayjs from 'dayjs';
-import { useNavigate } from 'react-router-dom';
 
 // Custom hook for responsive behavior
 const useResponsive = () => {
@@ -45,7 +41,7 @@ const useResponsive = () => {
   return { isMobile, isTablet };
 };
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const Dashboard = () => {
@@ -54,9 +50,8 @@ const Dashboard = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMode, setModalMode] = useState('create');
   const [editingUser, setEditingUser] = useState(null);
-  const { user, logout, isAdmin } = useAuth();
+  const { user } = useAuth();
   const { isMobile, isTablet } = useResponsive();
-  const navigate = useNavigate();
 
   // Load users on component mount
   useEffect(() => {
@@ -166,32 +161,6 @@ const Dashboard = () => {
     loadUsers();
   };
 
-  const handleLogout = () => {
-    logout();
-    message.success('ออกจากระบบสำเร็จ');
-  };
-
-  // User menu for header
-  const userMenu = {
-    items: [
-      {
-        key: 'profile',
-        icon: <UserOutlined />,
-        label: `${user?.user} (${user?.role})`,
-        disabled: true
-      },
-      {
-        type: 'divider'
-      },
-      {
-        key: 'logout',
-        icon: <LogoutOutlined />,
-        label: 'ออกจากระบบ',
-        onClick: handleLogout
-      }
-    ]
-  };
-
   // Table columns with responsive adjustments
   const columns = [
     {
@@ -250,7 +219,7 @@ const Dashboard = () => {
       align: 'center',
       render: (role) => (
         <Tag 
-          color={role === 'Admin' ? 'red' : role === 'Audit' ? 'purple' : role === 'Head' ? 'orange' : 'blue'}
+          color={role === 'Admin' ? 'red' : role === 'Head' ? 'orange' : 'blue'}
           style={{ fontSize: isMobile ? '10px' : '12px' }}
         >
           {role}
@@ -402,60 +371,7 @@ const Dashboard = () => {
 
   return (
     <Layout style={{ minHeight: '100vh', background: '#000000' }}>
-      <Header
-        style={{
-          background: '#000000',
-          borderBottom: '1px solid #333333',
-          padding: '0 16px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '56px',
-          lineHeight: '56px'
-        }}
-      >
-        <Title level={3} style={{ color: '#ffffff', margin: 0, fontSize: '22px', fontWeight: 'bold' }}>
-          LCA-Admin
-        </Title>
-        <Space size="middle" align="center">
-          {isAdmin() && (
-            <Space size="middle">
-              <Button
-                type="text"
-                onClick={() => navigate('/dashboard')}
-                style={{
-                  color: '#00C300',
-                  fontWeight: '500',
-                  fontSize: '14px'
-                }}
-              >
-                Dashboard
-              </Button>
-              {user?.user === 'Bnz82' && (
-                <Button
-                  type="text"
-                  onClick={() => navigate('/UpdateDATA')}
-                  style={{
-                    color: '#00C300',
-                    fontWeight: '500',
-                    fontSize: '14px'
-                  }}
-                >
-                  Data dashboard
-                </Button>
-              )}
-            </Space>
-          )}
-          <Dropdown menu={userMenu} trigger={['click']}>
-            <Button
-              type="text"
-              icon={<MoreOutlined />}
-              style={{ color: '#ffffff' }}
-              size="small"
-            />
-          </Dropdown>
-        </Space>
-      </Header>
+      <AppHeader title="LCA-Admin" />
 
       <Content style={{ padding: '16px', background: '#000000' }}>
         <div className="responsive-container">

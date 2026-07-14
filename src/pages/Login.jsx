@@ -10,8 +10,6 @@ const getRedirectPath = (role) => {
   switch (role) {
     case 'Admin':
       return '/dashboard';
-    case 'Audit':
-      return '/UpdateDATA';
     case 'Head':
       return '/AddData';
     default:
@@ -65,7 +63,7 @@ const Login = () => {
       >
         <div className="text-center mb-4">
           <Title level={2} style={{ color: '#ffffff', marginBottom: 8, fontSize: '20px' }}>
-            Linedashboard
+            LCA-Admin
           </Title>
           <Text type="secondary" style={{ fontSize: '14px' }}>
             เข้าสู่ระบบ

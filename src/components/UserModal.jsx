@@ -222,29 +222,17 @@ const UserModal = ({
             style={{
               height: '40px'
             }}
-            onChange={(value) => {
-              if (value === 'Audit') {
-                form.setFieldsValue({ team: null });
-              }
-            }}
           >
             <Option value="Admin">Admin</Option>
-            <Option value="Audit">Audit</Option>
             <Option value="Head">Head</Option>
             <Option value="User">User</Option>
           </Select>
         </Form.Item>
 
         <Form.Item
-          noStyle
-          shouldUpdate={(prevValues, currentValues) => prevValues.role !== currentValues.role}
+          label="ทีม"
+          name="team"
         >
-          {({ getFieldValue }) => 
-            getFieldValue('role') !== 'Audit' ? (
-              <Form.Item
-                label="ทีม"
-                name="team"
-              >
           <Select 
             placeholder="เลือกทีม (ไม่บังคับ)"
             allowClear
@@ -304,9 +292,6 @@ const UserModal = ({
               </Option>
             ))}
           </Select>
-        </Form.Item>
-            ) : null
-          }
         </Form.Item>
       </Form>
 

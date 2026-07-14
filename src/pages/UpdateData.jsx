@@ -11,27 +11,22 @@ import {
   Col,
   Button,
   message,
-  Dropdown,
   Tag,
   Select
 } from 'antd';
 const { RangePicker } = DatePicker;
 import {
   ReloadOutlined,
-  LogoutOutlined,
-  UserOutlined,
-  MoreOutlined,
   DownloadOutlined
 } from '@ant-design/icons';
-import { useAuth } from '../contexts/AuthContext';
+import AppHeader from '../components/AppHeader';
 import { statsAPI, teamsAPI } from '../services/api';
-import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import 'dayjs/locale/th';
 
 dayjs.locale('th');
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const useResponsive = () => {
@@ -64,9 +59,7 @@ const UpdateData = () => {
     totalGroups: 0,
     totalMessages: 0
   });
-  const { user, logout, isAdmin } = useAuth();
   const { isMobile, isTablet } = useResponsive();
-  const navigate = useNavigate();
 
   useEffect(() => {
     loadTeams();
@@ -211,11 +204,6 @@ const UpdateData = () => {
   const handleRefresh = () => {
     loadStats();
     message.success('รีเฟรชข้อมูลแล้ว');
-  };
-
-  const handleLogout = () => {
-    logout();
-    message.success('ออกจากระบบสำเร็จ');
   };
 
   const handleGenerateImage = async () => {
@@ -931,26 +919,6 @@ const UpdateData = () => {
     }, 'image/png');
   };
 
-  const userMenu = {
-    items: [
-      {
-        key: 'profile',
-        icon: <UserOutlined />,
-        label: `${user?.user} (${user?.role})`,
-        disabled: true
-      },
-      {
-        type: 'divider'
-      },
-      {
-        key: 'logout',
-        icon: <LogoutOutlined />,
-        label: 'ออกจากระบบ',
-        onClick: handleLogout
-      }
-    ]
-  };
-
   const columns = [
     {
       title: 'ลำดับ',
@@ -1099,58 +1067,7 @@ const UpdateData = () => {
 
   return (
     <Layout style={{ minHeight: '100vh', background: '#000000' }}>
-      <Header
-        style={{
-          background: '#000000',
-          borderBottom: '1px solid #333333',
-          padding: '0 16px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          height: '56px',
-          lineHeight: '56px'
-        }}
-      >
-        <Title level={3} style={{ color: '#ffffff', margin: 0, fontSize: '22px', fontWeight: 'bold' }}>
-          Dashboard
-        </Title>
-        <Space size="middle" align="center">
-          {user?.role === 'Audit' && (
-            <Space size="middle">
-              <Button
-                type="text"
-                onClick={() => navigate('/UpdateDATA')}
-                style={{
-                  color: '#00C300',
-                  fontWeight: '500',
-                  fontSize: '14px'
-                }}
-              >
-                Update Data
-              </Button>
-              <Button
-                type="text"
-                onClick={() => navigate('/AddData')}
-                style={{
-                  color: '#00C300',
-                  fontWeight: '500',
-                  fontSize: '14px'
-                }}
-              >
-                Add Data
-              </Button>
-            </Space>
-          )}
-          <Dropdown menu={userMenu} trigger={['click']}>
-            <Button
-              type="text"
-              icon={<MoreOutlined />}
-              style={{ color: '#ffffff' }}
-              size="small"
-            />
-          </Dropdown>
-        </Space>
-      </Header>
+      <AppHeader title="Update Data" />
 
       <Content style={{ padding: '16px', background: '#000000' }}>
         <div className="responsive-container">
