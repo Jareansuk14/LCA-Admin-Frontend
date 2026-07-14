@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Table, Button, Card, message } from 'antd';
-import { DownloadOutlined, ReloadOutlined } from '@ant-design/icons';
+import { Layout, Table, Button, Card, message, Popconfirm, Space } from 'antd';
+import { DownloadOutlined, ReloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import AppHeader from '../components/AppHeader';
 import { hookDataAPI } from '../services/api';
 import dayjs from 'dayjs';
@@ -11,6 +11,7 @@ const HookData = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [downloadingId, setDownloadingId] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
   const loadData = async () => {
     setLoading(true);
@@ -43,15 +44,30 @@ const HookData = () => {
     }
   };
 
+  const handleDelete = async (record) => {
+    setDeletingId(record._id);
+    try {
+      const response = await hookDataAPI.delete(record._id);
+      if (response.success) {
+        message.success('ลบสำเร็จ');
+        loadData();
+      }
+    } catch {
+      message.error('ลบไม่สำเร็จ');
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   const columns = [
-    { title: 'ลำดับ', dataIndex: 'no', key: 'no', width: '8%', align: 'center' },
-    { title: 'User', dataIndex: 'user', key: 'user', width: '14%', align: 'center' },
-    { title: 'ทีม', dataIndex: 'team', key: 'team', width: '14%', align: 'center' },
+    { title: 'ลำดับ', dataIndex: 'no', key: 'no', width: '7%', align: 'center' },
+    { title: 'User', dataIndex: 'user', key: 'user', width: '12%', align: 'center' },
+    { title: 'ทีม', dataIndex: 'team', key: 'team', width: '12%', align: 'center' },
     {
       title: 'วันเวลาที่อัพโหลด',
       dataIndex: 'uploadedAt',
       key: 'uploadedAt',
-      width: '32%',
+      width: '28%',
       align: 'center',
       render: (v) => dayjs(v).format('DD/MM/YYYY HH:mm:ss')
     },
@@ -59,25 +75,44 @@ const HookData = () => {
       title: 'จำนวนเบอร์',
       dataIndex: 'totalCount',
       key: 'totalCount',
-      width: '14%',
+      width: '12%',
       align: 'center',
       render: (v) => v?.toLocaleString()
     },
     {
-      title: 'ดาวน์โหลด',
-      key: 'download',
-      width: '18%',
+      title: 'จัดการ',
+      key: 'actions',
+      width: '29%',
       align: 'center',
       render: (_, record) => (
-        <Button
-          type="primary"
-          icon={<DownloadOutlined />}
-          size="small"
-          loading={downloadingId === record._id}
-          onClick={() => handleDownload(record)}
-        >
-          .txt
-        </Button>
+        <Space size="small">
+          <Button
+            type="primary"
+            icon={<DownloadOutlined />}
+            size="small"
+            loading={downloadingId === record._id}
+            onClick={() => handleDownload(record)}
+          >
+            .txt
+          </Button>
+          <Popconfirm
+            title="ยืนยันการลบ"
+            description="ลบข้อมูลนี้ออกจากระบบ?"
+            onConfirm={() => handleDelete(record)}
+            okText="ลบ"
+            cancelText="ยกเลิก"
+            okButtonProps={{ danger: true }}
+          >
+            <Button
+              danger
+              icon={<DeleteOutlined />}
+              size="small"
+              loading={deletingId === record._id}
+            >
+              ลบ
+            </Button>
+          </Popconfirm>
+        </Space>
       )
     }
   ];

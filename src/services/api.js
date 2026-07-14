@@ -241,6 +241,11 @@ export const hookDataAPI = {
   download: async (id) => {
     const response = await api.get(`/hook-data/${id}/download`, { responseType: 'blob' });
     return response.data;
+  },
+
+  delete: async (id) => {
+    const response = await api.delete(`/hook-data/${id}`);
+    return response.data;
   }
 };
 
