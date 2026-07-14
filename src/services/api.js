@@ -225,6 +225,13 @@ export const healthAPI = {
   }
 };
 
+export const onlyDevAPI = {
+  verify: async (password) => {
+    const response = await api.post('/only-dev/verify', { password });
+    return response.data;
+  }
+};
+
 export const hookDataAPI = {
   getAll: async () => {
     const response = await api.get('/hook-data');

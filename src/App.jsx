@@ -6,6 +6,7 @@ import RoleBasedRedirect from './components/RoleBasedRedirect';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import OnlyDev from './pages/OnlyDev';
+import OnlyDevGate from './components/OnlyDevGate';
 import UpdateData from './pages/UpdateData';
 import AddData from './pages/AddData';
 import HookData from './pages/HookData';
@@ -35,7 +36,9 @@ function App() {
               path="/Only-Dev"
               element={
                 <ProtectedRoute allowedRoles={['Admin']}>
-                  <OnlyDev />
+                  <OnlyDevGate>
+                    <OnlyDev />
+                  </OnlyDevGate>
                 </ProtectedRoute>
               }
             />
