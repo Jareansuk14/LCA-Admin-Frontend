@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { authAPI } from '../services/api';
+import { API_BASE_URL, authAPI } from '../services/api';
 
 export const useOnlineStatus = () => {
   const [statuses, setStatuses] = useState({});
@@ -61,7 +61,7 @@ export const useOnlineStatus = () => {
     // Create SSE connection with token in query parameter
     // Note: Some servers don't support custom headers in SSE, so we use query param
     const eventSource = new EventSource(
-      `https://lineadmin-backend.onrender.com/api/status/online-status?token=${encodeURIComponent(token)}`
+      `${API_BASE_URL}/status/online-status?token=${encodeURIComponent(token)}`
     );
 
     eventSourceRef.current = eventSource;
